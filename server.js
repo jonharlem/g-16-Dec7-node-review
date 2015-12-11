@@ -15,6 +15,9 @@ function handleRequest(req, res) {
 	else if(req.url.indexOf('/mole') === 0){
 		return attemptFile(req, res);
 	}
+	else if(req.url === '/warmup.js'){
+		return attemptFile(req, res);
+	}
 	else {
 		return fourOhFour(req, res);
 	}
@@ -89,7 +92,7 @@ function attemptFile(req, res) {
 	
 	var urlParts = req.url.split('?');
 	var processedUrl = '.' + urlParts[0];
-
+	console.log(processedUrl);
 	fs.readFile(processedUrl, function(err, data) {
 		if(err) {
 			return fourOhFour(req, res);
